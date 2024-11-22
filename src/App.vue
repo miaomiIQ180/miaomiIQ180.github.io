@@ -1,89 +1,43 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    >
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <button
+    type="button"
+    class="plus-iq"
+    :class="{ pressed: isPressed }"
+    @click="play()"
+    @mousedown="isPressed = true"
+    @mouseup="isPressed = false"
+    @mouseleave="isPressed = false"
+    @blur="isPressed = false"
+  >
+    <img v-show="!isPressed" src="/img/miaomi_normal_500.webp" alt="Miaomi">
+    <!-- FIXME: first load blinking problem -->
+    <img v-show="isPressed" src="/img/miaomi_pressed_500.webp" alt="Miaomi pressed">
+  </button>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script setup lang="ts">
+import kirby1up from "@/assets/sound/kirby-1up.mp3";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const isPressed = ref(false);
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
+const { play } = useSound(kirby1up);
+</script>
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+<style lang="scss" scoped>
+.plus-iq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 20rem;
+  overflow: hidden;
+  border: none;
+  border-radius: 10rem;
+  padding: 0;
+  &.pressed {
+    img {
+      margin-top: 1.25rem;
+    }
   }
 }
 </style>

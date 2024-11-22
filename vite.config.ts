@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => ({
         "vue-router",
         "@vueuse/core",
         "vue-i18n",
+        { "@raffaelesgarro/vue-use-sound": ["useSound"] },
         { "@/i18n": ["$t", "$d", "$n", "$locale", "_changeLang"] },
       ],
       vueTemplate: true,
