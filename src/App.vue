@@ -23,6 +23,7 @@
           <!-- FIXME: first load blinking problem -->
           <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
         </template>
+        <div class="hairpin">IQ{{ iq }}</div>
       </button>
     </div>
   </div>
@@ -90,18 +91,31 @@ watch(isSiteActive, (newState) => {
   place-content: center;
   height: inherit;
   > h1 {
+    color: #903862;
+    font-size: 1.75rem;
     text-align: center;
     margin: 0;
   }
 }
 
-.current-iq {
+.current-iq, .hairpin {
   color: rgb(var(--iq-text));
-  font-size: 3.5rem;
-  text-align: center;
+  font-size: 1.625rem;
   font-weight: bold;
+  text-align: center;
+  -webkit-text-stroke: 1px rgb(var(--iq-border));
+}
+.current-iq {
+  font-size: 3.625rem;
+  text-align: center;
   -webkit-text-stroke: 2px rgb(var(--iq-border));
   margin: 1.25rem 0 2rem;
+}
+.hairpin {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  text-shadow: 0 0 .25rem #fff;
+  left: 38%;
 }
 
 .btn-holder {
@@ -113,6 +127,7 @@ watch(isSiteActive, (newState) => {
 
 .plus-iq {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   width: var(--btn-size);
