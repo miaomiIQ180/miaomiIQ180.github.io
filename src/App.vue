@@ -9,9 +9,9 @@
     @mouseleave="isPressed = false"
     @blur="isPressed = false"
   >
-    <img v-show="!isPressed" src="/img/miaomi_normal_500.webp" alt="Miaomi">
+    <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
     <!-- FIXME: first load blinking problem -->
-    <img v-show="isPressed" src="/img/miaomi_pressed_500.webp" alt="Miaomi pressed">
+    <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
   </button>
 </template>
 
@@ -28,15 +28,15 @@ const { play } = useSound(kirby1up);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20rem;
-  height: 20rem;
+  width: 15rem;
+  aspect-ratio: 1;
   overflow: hidden;
   border: none;
   border-radius: 10rem;
-  padding: 0;
+  padding: .5rem .5rem 0;
   &.pressed {
     img {
-      margin-top: 1.25rem;
+      margin-top: 1rem;
     }
   }
 }
