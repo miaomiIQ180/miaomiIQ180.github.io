@@ -66,6 +66,22 @@ function cancelTouch(e: TouchEvent) {
     isPressed.value = false;
   }
 }
+
+// Handle site not active
+const isSiteActive = useDocumentVisibility();
+const { pause, resume } = useIntervalFn(() => {
+  title.value = title.value === "OAO..." ? `理我QQ...` : "OAO...";
+}, 500, { immediate: false });
+
+watch(isSiteActive, (newState) => {
+  if (newState === "visible") {
+    title.value = `喵咪是IQ${iq.value}！`;
+    pause();
+  } else {
+    title.value = `理我QQ...`;
+    resume();
+  }
+});
 </script>
 
 <style lang="scss" scoped>
