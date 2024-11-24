@@ -84,7 +84,7 @@ function cancelTouch(e: TouchEvent) {
 const isSiteActive = useDocumentVisibility();
 const { pause, resume } = useIntervalFn(() => {
   title.value = title.value === "OAO..." ? `理我QQ...` : "OAO...";
-}, 500, { immediate: false });
+}, 1000, { immediate: false });
 
 watch(isSiteActive, (newState) => {
   if (newState === "visible") {
