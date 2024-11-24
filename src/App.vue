@@ -2,7 +2,7 @@
   <div class="container">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
-    <div class="btn-holder">
+    <div class="btn-holder other-paw">
       <button
         ref="plusIqBtn"
         type="button"
@@ -20,31 +20,37 @@
       >
         <template v-if="isNormalImgReady && isPressedImgReady">
           <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
-          <!-- FIXME: first load blinking problem -->
           <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
         </template>
         <div class="hairpin">IQ{{ iq }}</div>
       </button>
     </div>
   </div>
+  <PlusOne ref="plusOne" />
 </template>
 
 <script setup lang="ts">
 import kirby1up from "@/assets/sound/kirby-1up.mp3";
+import PlusOne from "./components/PlusOne.vue";
 
 const title = useTitle();
+const { x: mouseX, y: mouseY } = useMouse();
 
-// IQ Counter
+// #region : IQ Counter
 const iq = ref(0);
+// #endregion
 
-// Button
+// #region : Button
 const plusIqBtn = useTemplateRef<HTMLButtonElement>("plusIqBtn");
 const { isOutside: isBtnOutside } = useMouseInElement(plusIqBtn);
 const isPressed = ref(false);
 const { isReady: isNormalImgReady } = useImage({ src: "/img/miaomi_normal_300.webp" });
 const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.webp" });
+// #endregion
 
-// Handle button click
+// #region : Handle button click
+const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
+
 const { play: play1up } = useSound(kirby1up);
 const { vibrate } = useVibrate({ pattern: 100 });
 function handlePressed(e: Event) {
@@ -56,19 +62,25 @@ function handleRelease(e: Event) {
     return;
   }
   iq.value++;
-  title.value = `喵咪是IQ${iq.value}！`;
+  plusOne.value?.add(iq.value, mouseX.value, mouseY.value);
   isPressed.value = false;
   play1up();
 }
 
-// Handle button touch
+watch(iq, (newIq) => {
+  title.value = `喵咪是IQ${newIq}！`;
+});
+// #endregion
+
+// #region : Handle button touch
 function cancelTouch(e: TouchEvent) {
   if (isBtnOutside.value) {
     isPressed.value = false;
   }
 }
+// #endregion
 
-// Handle site not active
+// #region : Handle site not active
 const isSiteActive = useDocumentVisibility();
 const { pause, resume } = useIntervalFn(() => {
   title.value = title.value === "OAO..." ? `理我QQ...` : "OAO...";
@@ -83,6 +95,7 @@ watch(isSiteActive, (newState) => {
     resume();
   }
 });
+// #endregion
 </script>
 
 <style lang="scss" scoped>
@@ -114,7 +127,17 @@ watch(isSiteActive, (newState) => {
 .hairpin {
   position: absolute;
   transform: translate(-50%, -50%) rotate(-10deg);
-  text-shadow: 0 0 .25rem #fff;
+  text-shadow:
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff;
   left: 38%;
 }
 
@@ -133,6 +156,7 @@ watch(isSiteActive, (newState) => {
   width: var(--btn-size);
   height: var(--btn-size);
   overflow: hidden;
+  background: #e9e9ed;
   border: none;
   border-radius: 10rem;
   padding: 0;

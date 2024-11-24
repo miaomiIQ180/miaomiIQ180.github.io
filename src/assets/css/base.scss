@@ -41,8 +41,8 @@ img {
   object-fit: contain;
 }
 
-button, a {
-  cursor: url("/cursor/cat_paw2.svg"), pointer;
+button, a, button:active, a:active {
+  cursor: url("/cursor/cat_paw2.svg"), pointer !important;
 }
 
 button {
