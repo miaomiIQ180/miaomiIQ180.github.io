@@ -2,7 +2,7 @@
   <div class="container">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
-    <div class="btn-holder other-paw">
+    <div class="btn-holder">
       <button
         ref="plusIqBtn"
         type="button"

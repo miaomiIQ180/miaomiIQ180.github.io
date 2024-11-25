@@ -38,7 +38,7 @@ defineExpose({
   font-size: 2rem;
   font-weight: bold;
   position: fixed;
-  top: calc(var(--pos-y) - 4.625rem);
+  top: calc(var(--pos-y) - 6rem);
   left: var(--pos-x);
   text-shadow: 0 0 2px #fff;
   -webkit-text-stroke: 1px #fff;
