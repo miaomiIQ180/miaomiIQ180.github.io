@@ -10,17 +10,20 @@ import "@/assets/css/transition.scss";
 import "@/assets/css/main.scss";
 //  #endregion
 
+// icon
+import "./utils/icon";
+
 const app = createApp(App);
 
 // Global Component
 app.component("Icon", Icon);
 
 // Google Analytics
-app.use(pluginVueGtag, {
-  config: {
-    id: "###", // Change to yout Google Analytics ID
-  },
-});
+// app.use(pluginVueGtag, {
+//   config: {
+//     id: "###", // Change to yout Google Analytics ID
+//   },
+// });
 
 // Mount it
 app.mount("#app");

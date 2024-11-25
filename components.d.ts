@@ -11,5 +11,6 @@ declare module 'vue' {
     PlusOne: typeof import('./src/components/PlusOne.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SocialAccounts: typeof import('./src/components/SocialAccounts.vue')['default']
   }
 }

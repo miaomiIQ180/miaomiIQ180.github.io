@@ -2,7 +2,7 @@
   <div class="container">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
-    <div class="btn-holder other-paw">
+    <div class="btn-holder">
       <button
         ref="plusIqBtn"
         type="button"
@@ -27,6 +27,7 @@
     </div>
   </div>
   <PlusOne ref="plusOne" />
+  <SocialAccounts />
 </template>
 
 <script setup lang="ts">
@@ -37,7 +38,8 @@ const title = useTitle();
 const { x: mouseX, y: mouseY } = useMouse();
 
 // #region : IQ Counter
-const iq = ref(0);
+const iq = useLocalStorage("iq", 0);
+provide("iq", iq);
 // #endregion
 
 // #region : Button
@@ -172,5 +174,11 @@ watch(isSiteActive, (newState) => {
   &:hover {
     background: rgb(var(--color-theme4));
   }
+}
+
+.social-accounts {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1rem;
 }
 </style>
