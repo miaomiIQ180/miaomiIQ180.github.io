@@ -37,7 +37,8 @@ const title = useTitle();
 const { x: mouseX, y: mouseY } = useMouse();
 
 // #region : IQ Counter
-const iq = ref(0);
+const iq = useLocalStorage("iq", 0);
+provide("iq", iq);
 // #endregion
 
 // #region : Button
