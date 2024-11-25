@@ -27,6 +27,7 @@
     </div>
   </div>
   <PlusOne ref="plusOne" />
+  <SocialAccounts />
 </template>
 
 <script setup lang="ts">
@@ -173,5 +174,11 @@ watch(isSiteActive, (newState) => {
   &:hover {
     background: rgb(var(--color-theme4));
   }
+}
+
+.social-accounts {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1rem;
 }
 </style>
