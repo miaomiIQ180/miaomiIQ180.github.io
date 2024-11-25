@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - "^v\\d+\\.\\d+\\.\\d+$"
+  release:
+    types: [published]
 
 jobs:
   build_and_deploy:
