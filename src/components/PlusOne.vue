@@ -8,7 +8,6 @@
         '--pos-x': `${item.x}px`,
         '--pos-y': `${item.y}px`,
       }"
-      @animationend="plusOneItems.shift()"
     >
       +1
     </div>
@@ -25,6 +24,9 @@ const plusOneItems = ref<typePlusOneItem[]>([]);
 
 function add(id: number, x: number, y: number) {
   plusOneItems.value.push({ id, x, y });
+  setTimeout(() => {
+    plusOneItems.value.shift();
+  }, 800);
 }
 
 defineExpose({
