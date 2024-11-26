@@ -18,7 +18,10 @@
         @keyup.space.enter="handleRelease"
         @blur="isPressed = false"
       >
-        <template v-if="isNormalImgReady && isPressedImgReady">
+        <template v-if="miaomiCry">
+          <img v-show="!isPressed" src="/img/miaomi_cry_300.webp" alt="Miaomi cried">
+        </template>
+        <template v-else-if="isNormalImgReady && isPressedImgReady">
           <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
           <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
         </template>
@@ -52,11 +55,13 @@ const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.
 
 // #region : Handle button click
 const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
+const miaomiCry = ref(false);
 
 const { play: play1up } = useSound(kirby1up);
 const { vibrate } = useVibrate({ pattern: 100 });
 function handlePressed(e: Event) {
   isPressed.value = true;
+  miaomiCry.value = false;
   vibrate();
 }
 function handleRelease(e: Event) {
@@ -94,6 +99,7 @@ watch(isSiteActive, (newState) => {
     pause();
   } else {
     title.value = `理我QQ...`;
+    miaomiCry.value = true;
     resume();
   }
 });
