@@ -27,7 +27,7 @@ const { iq } = storeToRefs(useAppStore());
   }
 }
 
-.current-iq, .hairpin {
+.current-iq, :deep(.hairpin) {
   color: rgb(var(--iq-text));
   font-size: 1.625rem;
   font-weight: bold;

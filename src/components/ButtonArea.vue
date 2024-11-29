@@ -8,20 +8,30 @@
       type="button"
       class="plus-iq"
     >
-      <template v-if="isPressed">Plusing 1</template>
-      <template v-else>Plus one</template>
+      <template v-if="isNormalImgReady && isPressedImgReady">
+        <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
+        <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
+      </template>
+      <div class="hairpin">IQ{{ iq }}</div>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
-const { addIq } = useAppStore();
+// #region : Load image
+const { isReady: isNormalImgReady } = useImage({ src: "/img/miaomi_normal_300.webp" });
+const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.webp" });
+// #endregion
 
+// #region : Button function
+const { iq } = storeToRefs(useAppStore());
+const { addIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
 const { pressed: isPressed } = useMousePressed({ target: plusIqBtn });
 whenever(() => !isPressed.value, () => {
   addIq();
 });
+// #endregion
 </script>
 
 <style lang="scss" scoped>
@@ -29,6 +39,7 @@ whenever(() => !isPressed.value, () => {
   --btn-size: 15rem;
   text-align: center;
   width: 100%;
+  height: var(--btn-size);
 }
 
 .plus-iq {
@@ -49,11 +60,33 @@ whenever(() => !isPressed.value, () => {
   img {
     pointer-events: none;
   }
-  &.pressed {
-    padding-top: 1rem;
-  }
   &:hover {
     background: rgb(var(--color-theme4));
+  }
+}
+
+.hairpin {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(-10deg);
+  text-shadow:
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff,
+    0 0 .125rem #fff;
+  left: 38%;
+}
+
+.button-area {
+  &.pressing {
+    .plus-iq {
+      padding-top: 1rem;
+    }
   }
 }
 </style>
