@@ -58,7 +58,8 @@ a:not([class]) {
 
 /* Make images easier to work with */
 img,
-picture {
+picture,
+.iconify {
   max-width: 100%;
   display: block;
 }
@@ -83,4 +84,9 @@ textarea:not([rows]) {
 /* Default cursor when hovering <button> or <a> */
 button:hover, a:hover {
   cursor: pointer;
+}
+
+/* No need pointer event on iconify svg */
+.iconify {
+  pointer-events: none;
 }
