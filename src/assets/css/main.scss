@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap');
+@font-face {
+  font-family: "FakePearl-Regular";
+  src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"),
+  url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff");
+}
+
+::selection {
+  background: #ba88a3;
+}
+
 html, body, #app {
   height: 100%;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Comic Neue", "FakePearl-Regular", Calibri, source-sans-pro, sans-serif;
+  height: 100%;
+  background: rgb(var(--bg-color)) repeat top center;
+  background-size: 22rem;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden auto;
 }
