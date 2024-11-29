@@ -29,6 +29,7 @@ ol[role='list'] {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  margin: 0;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -72,3 +73,7 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+/* Default cursor when hovering <button> or <a> */
+button:hover, a:hover {
+  cursor: pointer;
+}
