@@ -17,8 +17,9 @@ html {
   font-size: 16px;
   font-family: "Comic Neue", "FakePearl-Regular", Calibri, source-sans-pro, sans-serif;
   height: 100%;
-  background: rgb(var(--bg-color)) repeat top center;
+  background: rgb(var(--bg-color)) url("/img/background.svg") repeat top center;
   background-size: 22rem;
+  border-bottom: .625rem solid rgb(var(--color-theme1));
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
