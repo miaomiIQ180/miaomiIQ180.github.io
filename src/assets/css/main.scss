@@ -24,4 +24,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden auto;
+  cursor: url("/cursor/cat_paw1.svg"), auto;
+}
+
+:is(button, a):hover {
+  cursor: url("/cursor/cat_paw2.svg"), pointer !important;
 }
