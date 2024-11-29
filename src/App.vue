@@ -2,8 +2,8 @@
   <div class="container">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
-    <ButtonArea />
     <SocialAccounts />
+    <ButtonArea />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ const { iq } = storeToRefs(useAppStore());
   justify-content: center;
   align-items: center;
   height: inherit;
-  margin: 1rem 1.5rem;
+  padding: 1rem 1.5rem;
   > h1 {
     color: #903862;
     font-size: 1.75rem;

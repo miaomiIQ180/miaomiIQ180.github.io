@@ -32,7 +32,7 @@ whenever(() => !isPressed.value, () => {
 }
 
 .plus-iq {
-  display: flex;
+  display: inline-flex;
   position: relative;
   justify-content: center;
   align-items: center;
