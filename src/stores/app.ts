@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 export const useAppStore = defineStore("app", () => {
-  const isLoading = ref(false);
+  const iq = useStorage("iq", 0);
 
-  return { isLoading };
+  return { iq };
 });
