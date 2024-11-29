@@ -60,7 +60,7 @@ const { iq } = storeToRefs(useAppStore());
 
 .social-accounts {
   position: fixed;
-  bottom: 1.25rem;
+  bottom: 1.5rem;
   right: 1rem;
 }
 </style>
