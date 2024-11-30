@@ -8,7 +8,10 @@
       type="button"
       class="plus-iq"
     >
-      <template v-if="isNormalImgReady && isPressedImgReady">
+      <template v-if="miaomiCry">
+        <img v-show="!isPressed" src="/img/miaomi_cry_300.webp" alt="Miaomi cried">
+      </template>
+      <template v-else-if="isNormalImgReady && isPressedImgReady">
         <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
         <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
       </template>
@@ -23,13 +26,26 @@ const { isReady: isNormalImgReady } = useImage({ src: "/img/miaomi_normal_300.we
 const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.webp" });
 // #endregion
 
+// #region : When inactive
+const miaomiCry = ref(false);
+const isSiteActive = useDocumentVisibility();
+
+whenever(() => isSiteActive.value === "hidden", () => {
+  miaomiCry.value = true;
+});
+// #endregion
+
 // #region : Button function
 const { iq } = storeToRefs(useAppStore());
 const { addIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
 const { pressed: isPressed } = useMousePressed({ target: plusIqBtn });
-whenever(() => !isPressed.value, () => {
-  addIq();
+watch(isPressed, (newVal) => {
+  if (newVal) {
+    miaomiCry.value = false;
+  } else {
+    addIq();
+  }
 });
 // #endregion
 </script>
@@ -58,7 +74,7 @@ whenever(() => !isPressed.value, () => {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   img {
-    pointer-events: none;
+    user-select: none;
   }
   &:hover {
     background: rgb(var(--color-theme4));

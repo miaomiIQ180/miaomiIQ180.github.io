@@ -5,7 +5,6 @@
 *::after {
   color: var(--txt-color);
   box-sizing: border-box;
-  cursor: inherit;
 }
 
 /* Prevent font size inflation */

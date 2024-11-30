@@ -9,6 +9,31 @@
 
 <script setup lang="ts">
 const { iq } = storeToRefs(useAppStore());
+
+// #region : Set title on load
+const title = useTitle();
+watch(iq, (newIq) => {
+  // FIXME: Cursor reset problem
+  title.value = `喵咪現在IQ${newIq}！`;
+}, { immediate: true });
+// #endregion
+
+// #region : Handle site not active
+const isSiteActive = useDocumentVisibility();
+const { pause, resume } = useIntervalFn(() => {
+  title.value = title.value === "OAO..." ? `理我QQ...` : "OAO...";
+}, 1000, { immediate: false });
+
+watch(isSiteActive, (newState) => {
+  if (newState === "visible") {
+    title.value = `喵咪現在IQ${iq.value}！`;
+    pause();
+  } else {
+    title.value = `理我QQ...`;
+    resume();
+  }
+});
+// #endregion
 </script>
 
 <style lang="scss" scoped>
