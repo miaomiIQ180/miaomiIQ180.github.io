@@ -56,7 +56,6 @@ defineExpose({
   }
   50% {
     opacity: 1;
-    // top: calc(var(--pos-y) - 50px);
   }
   100% {
   }

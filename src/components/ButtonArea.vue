@@ -21,6 +21,10 @@
 </template>
 
 <script setup lang="ts">
+const emit = defineEmits<{
+  iqAdded: [],
+}>();
+
 // #region : Load image
 const { isReady: isNormalImgReady } = useImage({ src: "/img/miaomi_normal_300.webp" });
 const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.webp" });
@@ -39,12 +43,15 @@ whenever(() => isSiteActive.value === "hidden", () => {
 const { iq } = storeToRefs(useAppStore());
 const { addIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
+const { vibrate } = useVibrate({ pattern: 100 });
 const { pressed: isPressed } = useMousePressed({ target: plusIqBtn });
 watch(isPressed, (newVal) => {
   if (newVal) {
+    vibrate();
     miaomiCry.value = false;
   } else {
     addIq();
+    emit("iqAdded");
   }
 });
 // #endregion

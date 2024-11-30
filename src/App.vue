@@ -3,12 +3,16 @@
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
     <SocialAccounts />
-    <ButtonArea />
+    <ButtonArea @iq-added="plusOne?.add(iq, mouseX, mouseY)" />
+    <PlusOne ref="plusOne" />
   </div>
 </template>
 
 <script setup lang="ts">
+import type PlusOne from "./components/PlusOne.vue";
+
 const { iq } = storeToRefs(useAppStore());
+const { x: mouseX, y: mouseY } = useMouse();
 
 // #region : Set title on load
 const title = useTitle();
@@ -33,6 +37,10 @@ watch(isSiteActive, (newState) => {
     resume();
   }
 });
+// #endregion
+
+// #region : +1 indicator
+const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
 // #endregion
 </script>
 
