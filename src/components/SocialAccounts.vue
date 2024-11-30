@@ -37,9 +37,14 @@ const accounts: accountInfo[] = [
 .social-accounts__account {
   color: rgb(var(--color-theme1));
   position: relative;
-  transition: color .3s ease;
+    line-height: 1;
+    transition: color .3s ease;
   &:hover {
     color: #995078;
+  }
+  > a {
+    display: block;
+    line-height: 1;
   }
 }
 
@@ -52,7 +57,7 @@ const accounts: accountInfo[] = [
   font-size: 1.75rem;
   position: absolute;
   left: 50%;
-  bottom: 0.5625rem;
+  top: .875rem;
   transform: translateX(-50%);
 }
 </style>
