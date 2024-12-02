@@ -23,7 +23,7 @@ jobs:
           run_install: true
 
       - name: Build the project
-        run: pnpm build
+        run: pnpm build -- --base=/beta/
 
       - name: Handle 404
         run: cp ./dist/index.html ./dist/404.html
