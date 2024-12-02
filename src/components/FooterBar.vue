@@ -1,19 +1,26 @@
 <template>
-  <ul class="social-accounts">
+  <ul class="footer-bar">
+    <li class="footer-bar__item">
+      <button type="button" @click="playSound = !playSound">
+        <Icon :icon="playSound ? 'custom:cat-face-1up' : 'custom:cat-face-1up-off'" class="footer-bar__face" />
+      </button>
+    </li>
     <li
       v-for="account in accounts"
       :key="account.url"
-      class="social-accounts__account"
+      class="footer-bar__item"
     >
       <a :href="account.url" rel="noopener noreferrer" target="_blank">
-        <Icon icon="custom:cat-face" class="social-accounts__paw" />
-        <Icon :icon="account.icon" class="social-accounts__icon" />
+        <Icon icon="custom:cat-face" class="footer-bar__face" />
+        <Icon :icon="account.icon" class="footer-bar__icon" />
       </a>
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
+const { playSound } = storeToRefs(useAppStore());
+
 interface accountInfo {
   icon: string,
   url: string,
@@ -25,7 +32,7 @@ const accounts: accountInfo[] = [
 </script>
 
 <style lang="scss" scoped>
-.social-accounts {
+.footer-bar {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -34,7 +41,7 @@ const accounts: accountInfo[] = [
   gap: .75rem;
 }
 
-.social-accounts__account {
+.footer-bar__item {
   color: rgb(var(--color-theme1));
   position: relative;
     line-height: 1;
@@ -42,22 +49,26 @@ const accounts: accountInfo[] = [
   &:hover {
     color: #995078;
   }
-  > a {
+  > :is(button, a) {
     display: block;
     line-height: 1;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
   }
 }
 
-.social-accounts__paw {
-  font-size: 3rem;
+.footer-bar__face {
+  font-size: 3.625rem;
 }
 
-.social-accounts__icon {
+.footer-bar__icon {
   color: #fff;
   font-size: 1.75rem;
   position: absolute;
   left: 50%;
-  top: .875rem;
+  top: 1.25rem;
   transform: translateX(-50%);
 }
 </style>

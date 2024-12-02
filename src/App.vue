@@ -2,7 +2,7 @@
   <div class="container">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
-    <SocialAccounts />
+    <FooterBar />
     <ButtonArea @iq-added="plusOne?.add(iq, mouseX, mouseY)" />
     <PlusOne ref="plusOne" />
   </div>
@@ -91,9 +91,9 @@ const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
   left: 38%;
 }
 
-.social-accounts {
+.footer-bar {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 1.25rem;
   right: 1rem;
 }
 </style>
