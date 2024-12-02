@@ -1,21 +1,23 @@
-name: Deploy production
+name: Deploy beta
 
 on:
   push:
     tags:
-      - "^v\\d+\\.\\d+\\.\\d+$"
+      - "^v\\d+\\.\\d+\\.\\d+-(alpha|beta)\\.\\d+$"
   release:
     types: [published]
 
 jobs:
   build_and_deploy:
-    if: ${{ !(contains(github.ref, 'alpha') && contains(github.ref, 'beta')) }}
+    if: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') }}
     runs-on: ubuntu-latest
 
     steps:
-      # Check out the repository
-      - name: Checkout Main
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: beta
 
       # Install PNPM
       - uses: pnpm/action-setup@v4
@@ -30,9 +32,11 @@ jobs:
         run: cp ./dist/index.html ./dist/404.html
 
       # use actions-gh-pages to deploy dist to gh-pages
-      - name: Deploy Production
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          # github will auto-generate a token for this job and use it
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          external_repository: miaomiIQ180/beta
           publish_dir: ./dist
+          force_orphan: true
