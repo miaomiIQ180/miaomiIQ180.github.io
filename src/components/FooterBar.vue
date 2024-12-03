@@ -1,6 +1,11 @@
 <template>
   <ul class="footer-bar">
     <li class="footer-bar__item">
+      <button type="button" @click="vibrateOnClick = !vibrateOnClick">
+        <Icon :icon="vibrateOnClick ? 'custom:cat-face-vibrate' : 'custom:cat-face-vibrate-off'" class="footer-bar__face" />
+      </button>
+    </li>
+    <li class="footer-bar__item">
       <button type="button" @click="playSound = !playSound">
         <Icon :icon="playSound ? 'custom:cat-face-1up' : 'custom:cat-face-1up-off'" class="footer-bar__face" />
       </button>
@@ -19,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-const { playSound } = storeToRefs(useAppStore());
+const { playSound, vibrateOnClick } = storeToRefs(useAppStore());
 
 interface accountInfo {
   icon: string,
@@ -50,17 +55,15 @@ const accounts: accountInfo[] = [
     color: #995078;
   }
   > :is(button, a) {
+    font-size: 3.625rem;
     display: block;
+    width: 3.625rem;
     line-height: 1;
     padding: 0;
     margin: 0;
     background: none;
     border: none;
   }
-}
-
-.footer-bar__face {
-  font-size: 3.625rem;
 }
 
 .footer-bar__icon {

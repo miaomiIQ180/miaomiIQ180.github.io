@@ -48,7 +48,7 @@ whenever(() => isSiteActive.value === "hidden", () => {
 // #endregion
 
 // #region : Button function
-const { iq, noNaughty } = storeToRefs(useAppStore());
+const { iq, vibrateOnClick, noNaughty } = storeToRefs(useAppStore());
 const { addIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
 const plusIqBtnSize = useElementSize(plusIqBtn);
@@ -56,7 +56,10 @@ const { vibrate } = useVibrate({ pattern: 100 });
 const { pressed: isPressed } = useMousePressed({ target: plusIqBtn });
 watch(isPressed, (newVal) => {
   if (newVal) {
-    vibrate();
+    if (vibrateOnClick.value) {
+      console.log(`🚀 ~ watch ~ vibrate:`, "vibrate");
+      vibrate();
+    }
     miaomiCry.value = false;
   } else {
     addIq();
