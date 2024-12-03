@@ -74,6 +74,13 @@ const btnPara = shallowRef<Record<string, string | undefined>>({
   top: undefined,
   left: undefined,
 });
+function resetBtnPara() {
+  btnPara.value = {
+    size: undefined,
+    top: undefined,
+    left: undefined,
+  };
+}
 async function getMoving() {
   if (!btnArea.value) {
     return;
@@ -88,12 +95,10 @@ async function getMoving() {
     left,
   };
 }
-watch(noNaughty, () => {
-  btnPara.value = {
-    size: undefined,
-    top: undefined,
-    left: undefined,
-  };
+
+watch(noNaughty, resetBtnPara);
+onMounted(() => {
+  useEventListener("resize", useDebounceFn(resetBtnPara, 250), { passive: true });
 });
 // #endregion
 </script>
