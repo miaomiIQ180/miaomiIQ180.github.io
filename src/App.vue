@@ -60,6 +60,7 @@ function handleBtnClick() {
     color: #903862;
     font-size: 1.75rem;
     text-align: center;
+    font-weight: 500;
     margin: 0;
   }
 }

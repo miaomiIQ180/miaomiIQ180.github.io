@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap');
+@import url("https://chinese-fonts-cdn.deno.dev/packages/hcqyt/dist/ChillRoundFRegular/result.css") ;
 @font-face {
-  font-family: "FakePearl-Regular";
-  src: url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff2) format("woff2"),
-  url(https://cdn.jsdelivr.net/gh/max32002/FakePearl@1.1/webfont/FakePearl-Regular.woff) format("woff");
+  font-family: "open-huninn";
+  src: url(https://cdn.jsdelivr.net/gh/justfont/open-huninn-font@master/font/jf-openhuninn-2.1.ttf),
 }
 
 ::selection {
@@ -15,7 +15,7 @@ html, body, #app {
 
 html {
   font-size: 16px;
-  font-family: "Comic Neue", "FakePearl-Regular", Calibri, source-sans-pro, sans-serif;
+  font-family: "Comic Neue", "open-huninn", Calibri, source-sans-pro, sans-serif;
   height: 100%;
   background: rgb(var(--bg-color)) url("/img/background.svg") repeat top center;
   background-size: 22rem;
