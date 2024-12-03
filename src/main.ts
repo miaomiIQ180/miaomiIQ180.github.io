@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/vue";
 import { createPinia } from "pinia";
 import { createApp } from "vue";
-import pluginVueGtag from "vue-gtag";
 import App from "./App.vue";
 
 // #region : CSS
@@ -21,13 +20,6 @@ app.use(createPinia());
 
 // Icon
 app.component("Icon", Icon);
-
-// Google Analytics
-// app.use(pluginVueGtag, {
-//   config: {
-//     id: "###", // Change to yout Google Analytics ID
-//   },
-// }, router);
 
 // Mount it
 app.mount("#app");
