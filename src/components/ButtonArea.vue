@@ -15,11 +15,29 @@
       }"
     >
       <template v-if="miaomiCry">
-        <img v-show="!isPressed" src="/img/miaomi_cry_300.webp" alt="Miaomi cried">
+        <img
+          v-show="!isPressed"
+          src="/img/miaomi_cry_300.webp"
+          alt="Miaomi cried"
+          @contextmenu.prevent=""
+          @contextmenu.stop=""
+        >
       </template>
       <template v-else-if="isNormalImgReady && isPressedImgReady">
-        <img v-show="!isPressed" src="/img/miaomi_normal_300.webp" alt="Miaomi">
-        <img v-show="isPressed" src="/img/miaomi_pressed_300.webp" alt="Miaomi pressed">
+        <img
+          v-show="!isPressed"
+          src="/img/miaomi_normal_300.webp"
+          alt="Miaomi"
+          @contextmenu.prevent=""
+          @contextmenu.stop=""
+        >
+        <img
+          v-show="isPressed"
+          src="/img/miaomi_pressed_300.webp"
+          alt="Miaomi pressed"
+          @contextmenu.prevent=""
+          @contextmenu.stop=""
+        >
       </template>
       <div class="hairpin">IQ{{ iq }}</div>
     </button>
