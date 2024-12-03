@@ -158,11 +158,14 @@ onMounted(() => {
   transition: all .15s ease;
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
   user-select: none;
   img {
+    -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
     -webkit-touch-callout: none;
+    background: black;
   }
   &:hover {
     background: rgb(var(--color-theme4));
@@ -191,6 +194,7 @@ onMounted(() => {
     0 0 .125rem #fff;
   left: 38%;
   font-size: 0.11em;
+  -webkit-user-select: none;
   user-select: none;
   pointer-events: none;
 }
