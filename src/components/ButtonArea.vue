@@ -137,7 +137,7 @@ onMounted(() => {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   img {
-    user-select: none;
+    pointer-events: none;
   }
   &:hover {
     background: rgb(var(--color-theme4));
