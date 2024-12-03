@@ -45,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import { rem2px } from "@/utils/function";
 import random from "random-int";
 
 const emit = defineEmits<{
@@ -107,12 +108,12 @@ async function getMoving() {
   if (!btnArea.value) {
     return;
   }
-  btnPara.value.size = `${random(75, 100) / 10}rem`;
-  await nextTick();
-  const top = `${random(0, btnAreaSize.height.value - plusIqBtnSize.height.value)}px`;
-  const left = `${random(0, btnAreaSize.width.value - plusIqBtnSize.width.value)}px`;
+  const size = random(75, 150);
+  const sizePx = rem2px(size) / 10;
+  const top = `${random(0, btnAreaSize.height.value - sizePx)}px`;
+  const left = `${random(0, btnAreaSize.width.value - sizePx)}px`;
   btnPara.value = {
-    size: btnPara.value.size,
+    size: `${size / 10}rem`,
     top,
     left,
   };
@@ -128,8 +129,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 .button-area {
   --btn-size: 15rem;
-  font-size: var(--btn-size);
-  font-size: clamp(7.5rem, var(--btn-size), 15rem);
   line-height: 1;
   text-align: center;
   position: relative;
@@ -165,7 +164,6 @@ onMounted(() => {
     user-select: none;
     pointer-events: none;
     -webkit-touch-callout: none;
-    background: black;
   }
   &:hover {
     background: rgb(var(--color-theme4));
@@ -193,7 +191,7 @@ onMounted(() => {
     0 0 .125rem #fff,
     0 0 .125rem #fff;
   left: 38%;
-  font-size: 0.11em;
+  font-size: calc(var(--btn-size) * 0.11);
   -webkit-user-select: none;
   user-select: none;
   pointer-events: none;

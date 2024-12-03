@@ -33,6 +33,8 @@ const state = defineModel<boolean>({ required: true });
 }
 
 .paw-checkbox__checkbox {
+  width: 0;
+  height: 0;
   appearance: none;
   + .iconify {
     color: rgb(var(--color-theme1));
