@@ -5,6 +5,7 @@
 *::after {
   color: var(--txt-color);
   box-sizing: border-box;
+  touch-action: manipulation;
 }
 
 /* Prevent font size inflation */
