@@ -48,6 +48,7 @@ defineExpose({
   pointer-events: none;
   animation: floatUp .7s ease-out;
   opacity: 0;
+  z-index: 3;
 }
 @keyframes floatUp {
   0% {
