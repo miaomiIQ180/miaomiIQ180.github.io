@@ -27,6 +27,6 @@ html {
   cursor: url("/cursor/cat_paw1.svg"), auto;
 }
 
-:is(button, a):hover {
+:is(button, a, .other-paw) {
   cursor: url("/cursor/cat_paw2.svg"), pointer !important;
 }

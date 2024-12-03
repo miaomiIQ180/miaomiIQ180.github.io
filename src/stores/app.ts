@@ -4,6 +4,7 @@ import { defineStore } from "pinia";
 export const useAppStore = defineStore("app", () => {
   // #region : Settings
   const playSound = useStorage("playSound", true);
+  const noNaughty = useStorage("noNaughty", false);
   // #endregion
 
   // #region : IQ
@@ -22,5 +23,5 @@ export const useAppStore = defineStore("app", () => {
   }
   // #endregion
 
-  return { playSound, iq, addIq, setIq };
+  return { playSound, noNaughty, iq, addIq, setIq };
 });

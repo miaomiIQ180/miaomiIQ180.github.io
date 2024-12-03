@@ -1,12 +1,18 @@
 <template>
   <div
+    ref="btnArea"
     class="button-area"
     :class="{ pressing: isPressed }"
+    :style="{ '--btn-size': btnPara.size }"
   >
     <button
       ref="plusIqBtn"
       type="button"
       class="plus-iq"
+      :style="{
+        top: btnPara.top,
+        left: btnPara.left,
+      }"
     >
       <template v-if="miaomiCry">
         <img v-show="!isPressed" src="/img/miaomi_cry_300.webp" alt="Miaomi cried">
@@ -21,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+import random from "random-int";
+
 const emit = defineEmits<{
   iqAdded: [],
 }>();
@@ -40,9 +48,10 @@ whenever(() => isSiteActive.value === "hidden", () => {
 // #endregion
 
 // #region : Button function
-const { iq } = storeToRefs(useAppStore());
+const { iq, noNaughty } = storeToRefs(useAppStore());
 const { addIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
+const plusIqBtnSize = useElementSize(plusIqBtn);
 const { vibrate } = useVibrate({ pattern: 100 });
 const { pressed: isPressed } = useMousePressed({ target: plusIqBtn });
 watch(isPressed, (newVal) => {
@@ -52,7 +61,44 @@ watch(isPressed, (newVal) => {
   } else {
     addIq();
     emit("iqAdded");
+    if (!noNaughty.value) {
+      getMoving();
+    }
   }
+});
+
+const btnArea = ref<HTMLElement | null>(null);
+const btnAreaSize = useElementSize(btnArea);
+const btnPara = shallowRef<Record<string, string | undefined>>({
+  size: undefined,
+  top: undefined,
+  left: undefined,
+});
+function resetBtnPara() {
+  btnPara.value = {
+    size: undefined,
+    top: undefined,
+    left: undefined,
+  };
+}
+async function getMoving() {
+  if (!btnArea.value) {
+    return;
+  }
+  btnPara.value.size = `${random(75, 100) / 10}rem`;
+  await nextTick();
+  const top = `${random(0, btnAreaSize.height.value - plusIqBtnSize.height.value)}px`;
+  const left = `${random(0, btnAreaSize.width.value - plusIqBtnSize.width.value)}px`;
+  btnPara.value = {
+    size: btnPara.value.size,
+    top,
+    left,
+  };
+}
+
+watch(noNaughty, resetBtnPara);
+onMounted(() => {
+  useEventListener("resize", useDebounceFn(resetBtnPara, 250), { passive: true });
 });
 // #endregion
 </script>
@@ -60,18 +106,28 @@ watch(isPressed, (newVal) => {
 <style lang="scss" scoped>
 .button-area {
   --btn-size: 15rem;
+  font-size: var(--btn-size);
+  font-size: clamp(7.5rem, var(--btn-size), 15rem);
+  line-height: 1;
   text-align: center;
+  position: relative;
   width: 100%;
   height: var(--btn-size);
+  transition: flex .3s ease
 }
 
 .plus-iq {
   display: inline-flex;
-  position: relative;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: calc(50% - var(--btn-size) / 2);
+  left: calc(50% - var(--btn-size) / 2);
   width: var(--btn-size);
+  width: clamp(7.5rem, var(--btn-size), 15rem);
   height: var(--btn-size);
+  height: clamp(7.5rem, var(--btn-size), 15rem);
+  aspect-ratio: 1;
   overflow: hidden;
   background: #e9e9ed;
   border: none;
@@ -86,6 +142,12 @@ watch(isPressed, (newVal) => {
   &:hover {
     background: rgb(var(--color-theme4));
   }
+}
+
+.naughty .plus-iq {
+  position: absolute;
+  top: calc(50% - var(--btn-size) / 2);
+  left: calc(50% - var(--btn-size) / 2);
 }
 
 .hairpin {
@@ -103,6 +165,7 @@ watch(isPressed, (newVal) => {
     0 0 .125rem #fff,
     0 0 .125rem #fff;
   left: 38%;
+  font-size: 0.11em;
 }
 
 .button-area {

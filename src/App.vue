@@ -1,9 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ naughty: !noNaughty }">
     <h1>喵咪現在是</h1>
     <p class="current-iq">IQ{{ iq }}</p>
+    <ButtonArea @iq-added="handleBtnClick" />
+    <PawCheckbox v-model="noNaughty" class="no-naughty" text="聽話！讓我按按！" />
     <FooterBar />
-    <ButtonArea @iq-added="plusOne?.add(iq, mouseX, mouseY)" />
     <PlusOne ref="plusOne" />
   </div>
 </template>
@@ -11,7 +12,7 @@
 <script setup lang="ts">
 import type PlusOne from "./components/PlusOne.vue";
 
-const { iq } = storeToRefs(useAppStore());
+const { iq, noNaughty } = storeToRefs(useAppStore());
 const { x: mouseX, y: mouseY } = useMouse();
 
 // #region : Set title on load
@@ -39,8 +40,11 @@ watch(isSiteActive, (newState) => {
 });
 // #endregion
 
-// #region : +1 indicator
+// #region : Button click
 const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
+function handleBtnClick() {
+  plusOne.value?.add(iq.value, mouseX.value, mouseY.value);
+}
 // #endregion
 </script>
 
@@ -51,7 +55,7 @@ const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
   justify-content: center;
   align-items: center;
   height: inherit;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
   > h1 {
     color: #903862;
     font-size: 1.75rem;
@@ -62,7 +66,6 @@ const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
 
 .current-iq, :deep(.hairpin) {
   color: rgb(var(--iq-text));
-  font-size: 1.625rem;
   font-weight: bold;
   text-align: center;
   line-height: 1;
@@ -91,9 +94,26 @@ const plusOne = useTemplateRef<InstanceType<typeof PlusOne>>("plusOne");
   left: 38%;
 }
 
+.button-area {
+  z-index: 2;
+}
+
+.no-naughty {
+  font-size: 1.25rem;
+  margin-top: 1.5rem;
+}
+
 .footer-bar {
-  position: fixed;
-  bottom: 1.25rem;
-  right: 1rem;
+  // position: fixed;
+  // bottom: 1.25rem;
+  // right: 1rem;
+  margin-top: 1rem;
+}
+
+.container.naughty {
+  padding: 2rem 1rem 1.5rem;
+  .button-area {
+    flex-grow: 1;
+  }
 }
 </style>
