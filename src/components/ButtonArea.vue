@@ -23,7 +23,7 @@
           @contextmenu.stop=""
         >
       </template>
-      <template v-else-if="isNormalImgReady && isPressedImgReady">
+      <template v-else-if="isCryImgReady && isNormalImgReady && isPressedImgReady">
         <img
           v-show="!isPressed"
           src="/img/miaomi_normal_300.webp"
@@ -52,6 +52,7 @@ const emit = defineEmits<{
 }>();
 
 // #region : Load image
+const { isReady: isCryImgReady } = useImage({ src: "/img/miaomi_cry_300.webp" });
 const { isReady: isNormalImgReady } = useImage({ src: "/img/miaomi_normal_300.webp" });
 const { isReady: isPressedImgReady } = useImage({ src: "/img/miaomi_pressed_300.webp" });
 // #endregion
