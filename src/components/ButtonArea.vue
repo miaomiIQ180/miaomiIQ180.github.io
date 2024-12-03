@@ -139,6 +139,7 @@ onMounted(() => {
   transition: all .15s ease;
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
   img {
     pointer-events: none;
   }
