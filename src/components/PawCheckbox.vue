@@ -7,7 +7,7 @@
         type="checkbox"
         :aria-checked="state"
       >
-      <Icon :icon="state ? 'custom:paw' : 'ic:round-cancel'" width="1.5em" height="1.5em" />
+      <Icon :icon="state ? 'custom:paw' : 'ic:twotone-circle'" width="1.5em" height="1.5em" />
       <span>{{ text }}</span>
     </label>
   </div>
@@ -27,7 +27,7 @@ const state = defineModel<boolean>({ required: true });
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    gap: .375rem;
+    gap: .5rem;
     cursor: inherit;
   }
 }
