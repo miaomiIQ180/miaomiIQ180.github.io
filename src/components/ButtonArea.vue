@@ -155,10 +155,6 @@ onMounted(() => {
   border-radius: var(--btn-size);
   padding: 0;
   transition: all .15s ease;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-user-select: none;
-  user-select: none;
   img {
     -webkit-user-select: none;
     user-select: none;
