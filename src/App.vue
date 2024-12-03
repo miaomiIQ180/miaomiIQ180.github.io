@@ -77,22 +77,6 @@ function handleBtnClick() {
   -webkit-text-stroke: 2px rgb(var(--iq-border));
   margin: 1.5rem 0 2rem;
 }
-.hairpin {
-  position: absolute;
-  transform: translate(-50%, -50%) rotate(-10deg);
-  text-shadow:
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff,
-    0 0 .125rem #fff;
-  left: 38%;
-}
 
 .button-area {
   z-index: 2;

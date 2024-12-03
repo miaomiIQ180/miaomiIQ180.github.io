@@ -188,6 +188,8 @@ onMounted(() => {
     0 0 .125rem #fff;
   left: 38%;
   font-size: 0.11em;
+  user-select: none;
+  pointer-events: none;
 }
 
 .button-area {

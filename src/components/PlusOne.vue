@@ -45,6 +45,7 @@ defineExpose({
   text-shadow: 0 0 2px #fff;
   -webkit-text-stroke: 1px #fff;
   transform: translateX(-50%);
+  user-select: none;
   pointer-events: none;
   animation: floatUp .7s ease-out;
   opacity: 0;
