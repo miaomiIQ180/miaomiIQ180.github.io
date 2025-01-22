@@ -13,6 +13,10 @@ import "@/assets/css/main.scss";
 // icon
 import "./utils/icon";
 
+// Firebase
+import { VueFire } from "vuefire";
+import { firebaseApp } from "./firebase/index";
+
 const app = createApp(App);
 
 // Vue Plugins
@@ -20,6 +24,9 @@ app.use(createPinia());
 
 // Icon
 app.component("Icon", Icon);
+
+// Firebase
+app.use(VueFire, { firebaseApp });
 
 // Mount it
 app.mount("#app");

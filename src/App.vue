@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import type PlusOne from "./components/PlusOne.vue";
+import { getIq, updateIq } from "./firebase";
 
 const { iq, noNaughty } = storeToRefs(useAppStore());
 const { x: mouseX, y: mouseY } = useMouse();
@@ -46,6 +47,9 @@ function handleBtnClick() {
   plusOne.value?.add(iq.value, mouseX.value, mouseY.value);
 }
 // #endregion
+
+const iqdb = getIq();
+watch(iqdb, newVal => console.log("iqdb", newVal), { immediate: true });
 </script>
 
 <style lang="scss" scoped>
