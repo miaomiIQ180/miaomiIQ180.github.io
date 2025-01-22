@@ -39,7 +39,7 @@
           @contextmenu.stop=""
         >
       </template>
-      <div class="hairpin">IQ{{ iq }}</div>
+      <div class="hairpin">IQ{{ globalIq }}</div>
     </button>
   </div>
 </template>
@@ -68,7 +68,7 @@ whenever(() => isSiteActive.value === "hidden", () => {
 // #endregion
 
 // #region : Button function
-const { iq, vibrateOnClick, noNaughty } = storeToRefs(useAppStore());
+const { globalIq, vibrateOnClick, noNaughty } = storeToRefs(useAppStore());
 const { addIq, addGlobalIq } = useAppStore();
 const plusIqBtn = ref<HTMLButtonElement | null>(null);
 const { vibrate } = useVibrate({ pattern: 100 });
