@@ -20,12 +20,14 @@
     </footer>
     <PlusOne ref="plusOne" />
   </div>
+  <LoadingShade :show="isLoading > 0" />
 </template>
 
 <script setup lang="ts">
 import type PlusOne from "./components/PlusOne.vue";
 
-const { iq, noNaughty, globalIq, globalIqSync } = storeToRefs(useAppStore());
+const { isLoading, iq, noNaughty, globalIq, globalIqSync } = storeToRefs(useAppStore());
+const { setLoading } = useAppStore();
 const { x: mouseX, y: mouseY } = useMouse();
 
 // #region : Set title on load
@@ -54,6 +56,7 @@ onBeforeMount(async () => {
   await until(globalIqSync).toBeTruthy({ timeout: 1000, throwOnTimeout: true });
   globalIq.value = globalIqSync.value!;
   startTraceIq();
+  setLoading(false);
 });
 // #endregion
 

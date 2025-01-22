@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => ({
         "vue-router",
         "@vueuse/core",
         "pinia",
-        { "@vueuse/core": ["promiseTimout"] },
+        { "@vueuse/core": ["promiseTimeout"] },
         "vue-i18n",
         { "@raffaelesgarro/vue-use-sound": ["useSound"] },
         { "@/i18n": ["$t", "$d", "$n", "$locale", "_changeLang"] },

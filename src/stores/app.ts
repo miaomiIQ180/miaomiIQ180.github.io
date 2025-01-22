@@ -9,6 +9,13 @@ export const useAppStore = defineStore("app", () => {
   const noNaughty = useStorage("noNaughty", false);
   // #endregion
 
+  // #region : Loading
+  const isLoading = ref(1);
+  function setLoading(status = true) {
+    isLoading.value += status ? 1 : -1;
+  }
+  // #endregion
+
   // #region : Global IQ
   const globalIq = ref<number>(0);
   const globalIqSync = getIq();
@@ -36,6 +43,8 @@ export const useAppStore = defineStore("app", () => {
     playSound,
     vibrateOnClick,
     noNaughty,
+    isLoading,
+    setLoading,
     iq,
     addIq,
     setIq,
