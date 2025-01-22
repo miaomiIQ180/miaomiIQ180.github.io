@@ -1,6 +1,6 @@
 <template>
   <ul class="footer-bar">
-    <li class="footer-bar__item">
+    <li v-if="canVibrate" class="footer-bar__item">
       <button type="button" @click="vibrateOnClick = !vibrateOnClick">
         <Icon :icon="vibrateOnClick ? 'custom:cat-face-vibrate' : 'custom:cat-face-vibrate-off'" class="footer-bar__face" />
       </button>
@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 const { playSound, vibrateOnClick } = storeToRefs(useAppStore());
+const { isSupported: canVibrate } = useVibrate({ pattern: 100 });
 
 interface accountInfo {
   icon: string,
