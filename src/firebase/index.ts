@@ -28,12 +28,13 @@ export function useAppDbData() {
 export function getIq() {
   return computed(() => useAppDbData().value?.iq);
 }
-export function updateIq() {
+export async function updateIq(n: number = 1) {
+  console.log("updateIq");
   const appRef = useAppDbRef();
   const iq = getIq();
   if (!iq.value) {
     return;
   }
 
-  return update(appRef, { iq: iq.value + 1 });
+  return update(appRef, { iq: iq.value + n });
 }
