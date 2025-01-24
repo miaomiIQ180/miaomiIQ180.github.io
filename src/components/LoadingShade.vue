@@ -7,6 +7,8 @@
 </template>
 
 <script setup lang="ts">
+import { randomInt } from "d3-random";
+
 const props = defineProps<{
   show?: boolean,
 }>();
@@ -14,7 +16,7 @@ const props = defineProps<{
 const keepOpen = ref(false);
 whenever(() => props.show, async () => {
   keepOpen.value = true;
-  await promiseTimeout(1500);
+  await promiseTimeout(randomInt(1000, 1501)());
   keepOpen.value = false;
 }, { immediate: true });
 </script>

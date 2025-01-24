@@ -53,7 +53,7 @@ const { resume: startTraceIq, pause: pauseTraceIq } = useIntervalFn(() => {
 }, 3000, { immediate: false, immediateCallback: true });
 
 onBeforeMount(async () => {
-  await until(globalIqSync).toBeTruthy({ timeout: 1000, throwOnTimeout: true });
+  await until(globalIqSync).toBeTruthy({ timeout: 5000, throwOnTimeout: true });
   globalIq.value = globalIqSync.value!;
   startTraceIq();
   setLoading(false);

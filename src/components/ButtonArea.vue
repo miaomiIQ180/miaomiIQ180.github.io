@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { rem2px } from "@/utils/function";
-import random from "random-int";
+import { randomInt } from "d3-random";
 
 const emit = defineEmits<{
   iqAdded: [],
@@ -108,10 +108,10 @@ async function getMoving() {
   if (!btnArea.value) {
     return;
   }
-  const size = random(75, 150);
-  const sizePx = rem2px(size) / 10;
-  const top = `${random(0, btnAreaSize.height.value - sizePx)}px`;
-  const left = `${random(0, btnAreaSize.width.value - sizePx)}px`;
+  const size = randomInt(70, 151)();
+  const sizePx = (rem2px(size) / 10) + 1;
+  const top = `${randomInt(0, btnAreaSize.height.value - sizePx)()}px`;
+  const left = `${randomInt(0, btnAreaSize.width.value - sizePx)()}px`;
   btnPara.value = {
     size: `${size / 10}rem`,
     top,
